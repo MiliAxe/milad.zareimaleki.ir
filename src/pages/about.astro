@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Avatar from '../components/Avatar.astro';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 
@@ -14,17 +15,22 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
       Systems Software & Operating Systems Researcher · Kernel Observability & Dynamic Tracing
     </p>
 
-    <!-- Bio & Summary -->
-    <section class="about-section">
-      <p>
-        I am a senior undergraduate computer engineering student at the <strong>School of Computer Engineering, Iran University of Science and Technology (IUST)</strong>. My passion lies in understanding and optimizing the lowest levels of computing stacks: from kernel internals, memory management, and compiler instrumentation hooks to high-throughput network datapaths (DPDK / eBPF) and hardware performance counter diagnostics.
-      </p>
-      <p>
-        Currently, I conduct research at the <strong>Deep Observability Lab</strong> under the supervision of Dr. Seyed Vahid Azhari, where I build conditional dynamic runtime tracing extensions for <a href="https://github.com/namhyung/uftrace" target="_blank" rel="noopener">uftrace</a> and instrument line-rate packet processing pipelines.
-      </p>
-      <div class="action-buttons">
-        <a href={`${base}CV_Milad_Zarei_Maleki.pdf`} target="_blank" rel="noopener" class="button">Download Full CV (PDF) ↗</a>
-        <a href="mailto:milad_zarei@comp.iust.ac.ir" class="button outline">Get in Touch</a>
+    <!-- Bio & Summary with Interactive Avatar -->
+    <section class="about-section bio-container">
+      <div class="bio-avatar">
+        <Avatar defaultMode="ascii" />
+      </div>
+      <div class="bio-text">
+        <p>
+          I am a senior undergraduate computer engineering student at the <strong>School of Computer Engineering, Iran University of Science and Technology (IUST)</strong>. My passion lies in understanding and optimizing the lowest levels of computing stacks: from kernel internals, memory management, and compiler instrumentation hooks to high-throughput network datapaths (DPDK / eBPF) and hardware performance counter diagnostics.
+        </p>
+        <p>
+          Currently, I conduct research at the <strong>Deep Observability Lab</strong> under the supervision of Dr. Seyed Vahid Azhari, where I build conditional dynamic runtime tracing extensions for <a href="https://github.com/namhyung/uftrace" target="_blank" rel="noopener">uftrace</a> and instrument line-rate packet processing pipelines.
+        </p>
+        <div class="action-buttons">
+          <a href={`${base}CV_Milad_Zarei_Maleki.pdf`} target="_blank" rel="noopener" class="button">Download Full CV (PDF) ↗</a>
+          <a href="mailto:milad_zarei@comp.iust.ac.ir" class="button outline">Get in Touch</a>
+        </div>
       </div>
     </section>
 
@@ -189,6 +195,36 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 
   .about-section {
     margin: 40px 0;
+  }
+
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .bio-avatar {
+    width: 100%;
+    max-width: 360px;
+    flex-shrink: 0;
+  }
+
+  .bio-text {
+    flex: 1;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .bio-container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 32px;
+    }
+
+    .bio-avatar {
+      width: 320px;
+    }
   }
 
   .about-section p {
