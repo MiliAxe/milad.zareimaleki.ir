@@ -1,0 +1,5 @@
+# Cloudflare Pages Redirects
+/cv       /CV_Milad_Zarei_Maleki.pdf 302
+/resume   /CV_Milad_Zarei_Maleki.pdf 302
+/github   https://github.com/MiliAxe 302
+/linkedin https://linkedin.com/in/milad-zarei-maleki 302

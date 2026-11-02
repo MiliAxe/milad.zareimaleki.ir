@@ -3,11 +3,51 @@ export interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
 }
 
-const { title, description = 'Milad Zarei-Maleki | Systems Software & Kernel Observability Researcher', image } = Astro.props;
+const { title, description = 'Milad Zarei-Maleki | Systems Software & Kernel Observability Researcher', image, type = 'website' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const siteURL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://milad.zareimaleki.ir';
+const metaImage = image ? new URL(image, Astro.url).toString() : `${siteURL}/avatar.jpg`;
+
+const pageTitle = title ? `${title} :: Milad Zarei-Maleki` : 'Milad Zarei-Maleki | Systems Software Researcher';
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteURL}/#website`,
+  'url': siteURL,
+  'name': 'Milad Zarei-Maleki',
+  'alternateName': ['Milad Zarei', 'miladzm', 'milad.zareimaleki.ir', 'miladzm.ir'],
+  'description': 'Personal portfolio & systems research showcase for Milad Zarei-Maleki',
+  'inLanguage': 'en-US',
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteURL}/#person`,
+  'name': 'Milad Zarei-Maleki',
+  'url': siteURL,
+  'image': `${siteURL}/avatar.jpg`,
+  'jobTitle': 'Systems Software & Kernel Observability Researcher',
+  'description': 'Computer Engineering student at IUST, researcher at Deep Observability Lab specializing in dynamic kernel tracing, DPDK, and operating systems.',
+  'worksFor': {
+    '@type': 'ResearchOrganization',
+    'name': 'Deep Observability Lab, IUST',
+  },
+  'alumniOf': {
+    '@type': 'EducationalOrganization',
+    'name': 'Iran University of Science and Technology',
+    'url': 'http://www.iust.ac.ir/',
+  },
+  'sameAs': [
+    'https://github.com/MiliAxe',
+    'https://linkedin.com/in/milad-zarei-maleki',
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -19,23 +59,35 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     <link rel="alternate icon" type="image/x-icon" href={`${base}favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
     
-    <title>{title ? `${title} :: Milad Zarei-Maleki` : 'Milad Zarei-Maleki | Systems Software Researcher'}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Milad Zarei-Maleki" />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="Milad Zarei-Maleki, Systems Software, Kernel Observability, Dynamic Tracing, uftrace, DPDK, eBPF, xv6, QEMU, IUST" />
     <link rel="canonical" href={canonicalURL} />
     
-    <meta property="og:title" content={title ? `${title} :: Milad Zarei-Maleki` : 'Milad Zarei-Maleki'} />
+    <!-- Open Graph / Social Media -->
+    <meta property="og:site_name" content="Milad Zarei-Maleki" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
-    {image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+    <meta property="og:image" content={metaImage} />
     
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title ? `${title} :: Milad Zarei-Maleki` : 'Milad Zarei-Maleki'} />
+    <meta name="twitter:site" content="@MiliAxe" />
+    <meta name="twitter:creator" content="@MiliAxe" />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    {image && <meta name="twitter:image" content={new URL(image, Astro.url)} />}
+    <meta name="twitter:image" content={metaImage} />
     
     <link rel="sitemap" href={`${base}sitemap-index.xml`} />
     <link rel="alternate" type="application/rss+xml" title="RSS" href={`${base}rss.xml`} />
+
+    <!-- Google Structured Data (JSON-LD) for Site Name and Identity -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify([websiteSchema, personSchema])} />
   </head>
   <body>
     <div class="container center">

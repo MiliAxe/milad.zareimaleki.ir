@@ -12,11 +12,36 @@ export interface Props {
   tags?: string[];
 }
 
-const { title, description, pubDate, updatedDate, author, image, tags = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, author = 'Milad Zarei-Maleki', image, tags = [] } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const siteURL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://milad.zareimaleki.ir';
+const postURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  'headline': title,
+  'description': description,
+  'url': postURL,
+  'datePublished': pubDate.toISOString(),
+  'dateModified': (updatedDate || pubDate).toISOString(),
+  'author': {
+    '@type': 'Person',
+    'name': author,
+    'url': siteURL,
+  },
+  'publisher': {
+    '@type': 'Person',
+    'name': 'Milad Zarei-Maleki',
+    'url': siteURL,
+  },
+  'keywords': tags.join(', '),
+};
 ---
 
-<BaseLayout title={title} description={description} image={image}>
+<BaseLayout title={title} description={description} image={image} type="article">
+  <!-- Article Structured Data for Search Engines -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
   <article>
     <h1 class="post-title">{title}</h1>
     
