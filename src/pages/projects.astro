@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects" description="Systems Software, Kernel, and Performance Engineering Projects by Milad Zarei-Maleki">
+  <div class="page">
+    <div class="terminal-banner">
+      <span class="prompt-user">milad@sys</span>:<span class="prompt-path">~/projects</span><span class="prompt-symbol">$</span> <span class="prompt-cmd">ls -la --sort=time</span>
+    </div>
+
+    <h1>Academic & Systems Projects</h1>
+    <p class="lead">
+      A selection of systems software, operating systems kernel extensions, microarchitectural benchmarks, and scientific simulation engines built with <strong>C</strong>, <strong>Rust</strong>, <strong>x86 Assembly</strong>, and <strong>Python</strong>.
+    </p>
+
+    <div class="projects-container">
+      <!-- Project 1: xv6 Deadlock Detection Engine -->
+      <article class="project-entry framed">
+        <div class="entry-header">
+          <div>
+            <h2>xv6: In-Kernel Dynamic Deadlock Detection Engine</h2>
+            <div class="tags">
+              <span class="tag">C</span>
+              <span class="tag">x86 Assembly</span>
+              <span class="tag">MIT xv6 Kernel</span>
+              <span class="tag">QEMU</span>
+              <span class="tag">Concurrency</span>
+            </div>
+          </div>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button small">GitHub ↗</a>
+        </div>
+
+        <p class="summary">
+          Engineered an in-kernel dynamic deadlock detection subsystem for multi-threaded processes in MIT's xv6 operating system kernel, preventing circular wait deadlocks before they freeze system execution.
+        </p>
+
+        <div class="details-section">
+          <h4>Key Architectural Highlights</h4>
+          <ul>
+            <li>
+              <strong>Active Resource Allocation Graph (RAG):</strong> Mapped and maintained an active RAG directly inside dedicated kernel memory pages, tracking both thread-to-resource acquisition (assignment edges) and pending acquisition attempts (request edges).
+            </li>
+            <li>
+              <strong>Custom System Calls:</strong> Implemented <code>requestresource</code>, <code>releaseresource</code>, and granular <code>read/writeresource</code> syscalls with sleep-lock synchronization channels.
+            </li>
+            <li>
+              <strong>Preemptive DFS Cycle Detection:</strong> Integrated a Depth-First Search cycle-detection algorithm with recursion stack state tracking and spinlock protection. Before a thread transitions into an unrunnable wait state, the kernel checks for potential circular waits and immediately aborts hazardous acquisitions with an error code (<code>EDEADLK</code>).
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Project 2: Microarchitectural Profiling -->
+      <article class="project-entry framed">
+        <div class="entry-header">
+          <div>
+            <h2>Microarchitectural Profiling: KVM vs. QEMU TCG</h2>
+            <div class="tags">
+              <span class="tag">C</span>
+              <span class="tag">Linux perf</span>
+              <span class="tag">QEMU</span>
+              <span class="tag">KVM</span>
+              <span class="tag">Hardware Counters</span>
+              <span class="tag">Bash</span>
+            </div>
+          </div>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button small">GitHub ↗</a>
+        </div>
+
+        <p class="summary">
+          Comprehensive microarchitectural benchmark analyzing memory subsystem latency, cache hierarchy hit rates, and CPU execution bottlenecks under hardware virtualization vs cross-architecture dynamic binary translation.
+        </p>
+
+        <div class="details-section">
+          <h4>Key Architectural Highlights</h4>
+          <ul>
+            <li>
+              <strong>Execution Model Comparison:</strong> Evaluated host microarchitectural behavior comparing hardware-assisted virtualization (Linux KVM on Intel VT-x) against dynamic binary translation (QEMU Tiny Code Generator: x86_64 to aarch64).
+            </li>
+            <li>
+              <strong>Workload Isolation:</strong> Bound isolated vCPUs to physical CPU cores using <code>taskset</code> across diverse memory-bound workloads, including non-sequential pointer chasing, cache-blocked GEMM matrix multiplication, and sysbench.
+            </li>
+            <li>
+              <strong>Hardware Counter Diagnostics & FlameGraphs:</strong> Instrumented PMU performance counters via Linux <code>perf stat</code>, <code>perf record</code>, and <code>perf mem</code>, generating detailed FlameGraphs to isolate SoftMMU compilation hotspots and translation block lookup bottlenecks.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Project 3: fluidrs -->
+      <article class="project-entry framed">
+        <div class="entry-header">
+          <div>
+            <h2>fluidrs: Real-Time Eulerian Fluid Dynamics Engine</h2>
+            <div class="tags">
+              <span class="tag">Rust</span>
+              <span class="tag">Raylib</span>
+              <span class="tag">Dear ImGui</span>
+              <span class="tag">Numerical Methods</span>
+              <span class="tag">Simulation</span>
+            </div>
+          </div>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button small">GitHub ↗</a>
+        </div>
+
+        <p class="summary">
+          A high-performance, real-time 2D Eulerian fluid simulation engine built from scratch in Rust, solving the incompressible Navier-Stokes equations with GPU-accelerated rendering and an interactive parameter debugger.
+        </p>
+
+        <div class="details-section">
+          <h4>Key Architectural Highlights</h4>
+          <ul>
+            <li>
+              <strong>Navier-Stokes Solver:</strong> Implemented velocity advection, diffusion, and numerical pressure Poisson projection using vectorized Jacobi relaxation algorithms to enforce divergence-free velocity fields and mass conservation.
+            </li>
+            <li>
+              <strong>High Frame Rates:</strong> Sustained 60+ FPS on interactive grids through memory layout optimizations and contiguous grid buffer allocation in Rust.
+            </li>
+            <li>
+              <strong>Decoupled UI & Rendering:</strong> Constructed an interactive parameter tuning interface (fluid density, viscosity, vorticity confinement, color palettes) using Dear ImGui cleanly decoupled from GPU-accelerated Raylib rendering pipelines.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Project 4: JORP -->
+      <article class="project-entry framed">
+        <div class="entry-header">
+          <div>
+            <h2>JORP: Joint Radio & Computational Resource Allocation Simulator</h2>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">SciPy</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">Edge Computing</span>
+            </div>
+          </div>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button small">GitHub ↗</a>
+        </div>
+
+        <p class="summary">
+          A vectorized simulation environment developed at the Distributed and Scalable Computation Systems Lab to model joint radio and computational resource allocation for multi-cell mobile edge computing.
+        </p>
+
+        <div class="details-section">
+          <h4>Key Architectural Highlights</h4>
+          <ul>
+            <li>
+              <strong>Algorithmic Replication:</strong> Replicated and benchmarked edge task offloading optimization policies formulated in recent IEEE literature (Hu et al.).
+            </li>
+            <li>
+              <strong>Channel & Queueing Modeling:</strong> Simulated multi-user wireless transmission interference, Rayleigh fading channels, and computation queue dynamics across heterogeneous mobile devices and edge server nodes.
+            </li>
+            <li>
+              <strong>Pareto Optimization:</strong> Quantified global average task latency reduction under variable computational workloads, generating structured statistical evaluations and Pareto-optimal trade-off curves.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Project 5: uftrace Upstream -->
+      <article class="project-entry framed">
+        <div class="entry-header">
+          <div>
+            <h2>uftrace: Official Upstream Linux Tracing Contributions</h2>
+            <div class="tags">
+              <span class="tag">C</span>
+              <span class="tag">Linux Kernel Tracing</span>
+              <span class="tag">uftrace</span>
+              <span class="tag">Open Source</span>
+            </div>
+          </div>
+          <a href="https://github.com/namhyung/uftrace" target="_blank" rel="noopener" class="button small">uftrace Repo ↗</a>
+        </div>
+
+        <p class="summary">
+          Three upstream pull requests authored and merged into the official uftrace runtime tracing toolkit used widely across Linux systems performance engineering.
+        </p>
+
+        <div class="details-section">
+          <h4>Merged Contributions</h4>
+          <ul>
+            <li>
+              <strong>Sub-64-bit Argument Normalization:</strong> Fixed sign-extension normalization for sub-64-bit signed arguments in <code>uftrace_eval_cond()</code>, ensuring accurate evaluation of filter predicates on 64-bit architectures.
+            </li>
+            <li>
+              <strong>Negative Integer Filter Test Suite:</strong> Created automated test <code>t306_arg_cond3</code> covering negative signed argument comparisons across all conditional operators.
+            </li>
+            <li>
+              <strong>Shared Memory Leak Fix:</strong> Resolved memory leak in POSIX/Android shared memory segment handling during tracing termination.
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .terminal-banner {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--foreground) 75%, transparent);
+    margin-bottom: 15px;
+  }
+
+  .prompt-user {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .prompt-path {
+    color: var(--foreground);
+  }
+
+  .prompt-symbol {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  .prompt-cmd {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 25px;
+  }
+
+  .project-entry {
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+    transition: transform 0.15s ease;
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+
+  .entry-header h2 {
+    margin: 0 0 8px 0;
+    color: var(--accent);
+    font-size: 1.25rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 0.78rem;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    padding: 2px 7px;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .summary {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 12px 0 16px 0;
+  }
+
+  .details-section h4 {
+    margin: 16px 0 8px 0;
+    color: var(--accent);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .details-section ul {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
+  .details-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-size: 0.92rem;
+  }
+</style>

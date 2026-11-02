@@ -4,8 +4,8 @@ import { getCollection } from 'astro:content';
 export async function GET(context) {
   const posts = await getCollection('posts');
   return rss({
-    title: 'Astro Terminal Theme',
-    description: 'A terminal-inspired theme for Astro',
+    title: "Milad Zarei-Maleki's Systems Blog",
+    description: "Systems software, kernel observability, dynamic tracing, and high-performance computing",
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Research" description="Systems Software, Kernel Observability, and Dynamic Tracing Research by Milad Zarei-Maleki">
+  <div class="page">
+    <div class="terminal-banner">
+      <span class="prompt-user">milad@sys</span>:<span class="prompt-path">~/research</span><span class="prompt-symbol">$</span> <span class="prompt-cmd">cat lab_notes.txt</span>
+    </div>
+
+    <h1>Research & Academic Experience</h1>
+    <p class="lead">
+      My research centers on <strong>systems software</strong>, <strong>low-overhead dynamic runtime tracing</strong>, <strong>high-performance networking (DPDK & eBPF)</strong>, and <strong>distributed computing systems</strong>. I focus on observability mechanisms that can extract fine-grained execution metrics from live production datapaths without disturbing line-rate performance.
+    </p>
+
+    <!-- Lab 1: Deep Observability Lab -->
+    <section class="research-group">
+      <div class="group-header">
+        <div>
+          <h2>Deep Observability Lab</h2>
+          <div class="affiliation">School of Computer Engineering, Iran University of Science and Technology (IUST)</div>
+        </div>
+        <div class="role-meta">
+          <span class="badge">Research Assistant</span>
+          <span class="date">May 2026 – Present</span>
+        </div>
+      </div>
+      <div class="supervisor-line">
+        <strong>Supervisor:</strong> <a href="mailto:azharivs@iust.ac.ir">Dr. Seyed Vahid Azhari</a> (Assistant Professor & Lab Director)
+      </div>
+
+      <div class="research-details">
+        <h3>Dynamic Function Interception & Conditional Tracing</h3>
+        <p>
+          Tracing high-throughput systems often incurs intolerable execution penalties. In this lab, we develop low-overhead conditional tracing extensions for <a href="https://github.com/namhyung/uftrace" target="_blank" rel="noopener"><strong>uftrace</strong></a> in C/C++, building runtime function interception primitives capable of evaluating execution predicates, call graph depth, and memory states on the fly.
+        </p>
+
+        <h3>DPDK Pipeline Instrumentation</h3>
+        <p>
+          Instrumented the <strong>DPDK</strong> (<code>dpdk-testpmd</code>) packet processing pipeline using compiler profiling hooks (<code>-pg</code> / <code>-mfentry</code>) and DWARF-aware runtime struct resolution. This architecture isolates critical L3/L4 protocol routines (such as <code>swap_ipv4</code> and <code>rte_ipv4_hdr_len</code>) under saturated packet loads while maintaining strictly bounded tracing overhead.
+        </p>
+
+        <h3>Automated Headless Benchmarking</h3>
+        <p>
+          Constructed automated headless benchmarking test harnesses managing 2MB/1GB hugepages via <code>hugetlbfs</code>, virtual TAP interfaces, and isolated Linux network namespaces (<code>netns</code>) to simulate reproducible network workloads.
+        </p>
+
+        <div class="framed upstream-box">
+          <h4>Upstream Contributions to Official uftrace</h4>
+          <ul>
+            <li>
+              <strong>Sub-64-bit Signed Argument Normalization:</strong> Resolved an issue in <code>uftrace_eval_cond()</code> where sub-64-bit signed integers in 64-bit registers were improperly sign-extended during conditional filtering.
+            </li>
+            <li>
+              <strong>Negative Integer Filtering Test Suite:</strong> Designed and authored automated test cases (<code>t306_arg_cond3</code>) to validate relational operators (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>) against negative integer arguments.
+            </li>
+            <li>
+              <strong>Shared Memory Cleanup:</strong> Diagnosed and fixed Android and POSIX shared memory leaks occurring during multi-process tracing sessions.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lab 2: Distributed and Scalable Computation Systems Lab -->
+    <section class="research-group">
+      <div class="group-header">
+        <div>
+          <h2>Distributed and Scalable Computation Systems Research Lab</h2>
+          <div class="affiliation">School of Computer Engineering, Iran University of Science and Technology (IUST)</div>
+        </div>
+        <div class="role-meta">
+          <span class="badge">Research Assistant Intern</span>
+          <span class="date">Jan 2025 – Aug 2025</span>
+        </div>
+      </div>
+      <div class="supervisor-line">
+        <strong>Supervisor:</strong> <a href="mailto:entezari@iust.ac.ir">Dr. Reza Entezari-Maleki</a> (Assistant Professor & Lab Director)
+      </div>
+
+      <div class="research-details">
+        <h3>JORP: Joint Radio & Computational Resource Allocation</h3>
+        <p>
+          Investigated edge and fog computing architectures, offloading policies, and resource allocation models in distributed environments. Designed and implemented <strong>JORP</strong>, a modular, vectorized Python simulation framework modeling joint radio and computational resource allocation to minimize global average task delay under multi-cell wireless interference constraints.
+        </p>
+        <p>
+          Benchmarked multi-user latency profiles against theoretical models, verifying algorithmic convergence properties and quantifying Pareto-optimal trade-offs across heterogeneous edge server nodes.
+        </p>
+      </div>
+    </section>
+
+    <!-- B.Sc. Thesis Section -->
+    <section class="research-group">
+      <div class="group-header">
+        <div>
+          <h2>B.Sc. Final Thesis Project</h2>
+          <div class="affiliation">School of Computer Engineering, Iran University of Science and Technology (IUST)</div>
+        </div>
+      </div>
+      <div class="thesis-box framed">
+        <h3 class="thesis-title">Design and Evaluation of Low-Overhead Dynamic Runtime Tracing and Function Interception in High-Performance Packet Processing Systems</h3>
+        <p><strong>Thesis Supervisor:</strong> Dr. Seyed Vahid Azhari</p>
+        <p>
+          Focuses on dynamic instrumentation techniques for kernel and userspace packet processing stacks, combining hardware performance counters, compiler hooks, and lightweight filter evaluation to diagnose microarchitectural stalls and throughput bottlenecks in real-time.
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .terminal-banner {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--foreground) 75%, transparent);
+    margin-bottom: 15px;
+  }
+
+  .prompt-user {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .prompt-path {
+    color: var(--foreground);
+  }
+
+  .prompt-symbol {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  .prompt-cmd {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .research-group {
+    margin: 40px 0 50px 0;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .research-group:last-of-type {
+    border-bottom: none;
+  }
+
+  .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .group-header h2 {
+    margin: 0 0 5px 0;
+    color: var(--accent);
+  }
+
+  .affiliation {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  .role-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .badge {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+    color: var(--accent);
+    padding: 2px 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid var(--accent);
+  }
+
+  .date {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .supervisor-line {
+    font-size: 0.95rem;
+    margin: 10px 0 20px 0;
+    padding: 6px 10px;
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+    border-left: 3px solid var(--accent);
+  }
+
+  .research-details h3 {
+    margin: 20px 0 8px 0;
+    font-size: 1.1rem;
+    color: var(--accent);
+  }
+
+  .research-details p {
+    margin: 8px 0 16px 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .upstream-box {
+    margin-top: 25px;
+  }
+
+  .upstream-box h4 {
+    margin-top: 0;
+    color: var(--accent);
+  }
+
+  .upstream-box ul {
+    margin-left: 20px;
+  }
+
+  .upstream-box li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .thesis-box {
+    margin-top: 15px;
+  }
+
+  .thesis-title {
+    margin-top: 0;
+    color: var(--accent);
+    font-size: 1.15rem;
+  }
+
+  @media (max-width: 640px) {
+    .role-meta {
+      align-items: flex-start;
+    }
+  }
+</style>

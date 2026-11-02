@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Teaching" description="Academic Mentorship and Teaching Experience of Milad Zarei-Maleki at IUST">
+  <div class="page">
+    <div class="terminal-banner">
+      <span class="prompt-user">milad@sys</span>:<span class="prompt-path">~/teaching</span><span class="prompt-symbol">$</span> <span class="prompt-cmd">cat academic_mentorship.log</span>
+    </div>
+
+    <h1>Teaching Experience & Academic Mentorship</h1>
+    <p class="lead">
+      Over 6 academic semesters at the <strong>School of Computer Engineering, Iran University of Science and Technology (IUST)</strong>, I have served as Head Teaching Assistant and Teaching Assistant across foundational systems, programming, and theoretical computer science courses.
+    </p>
+
+    <div class="notice-bar">
+      * All teaching assistant appointments listed below were unpaid, non-contractual leadership & mentorship positions.
+    </div>
+
+    <div class="appointments-list">
+      <!-- 1. Computer Workshop -->
+      <section class="appointment-card framed">
+        <div class="card-header">
+          <div>
+            <h2>Head Teaching Assistant — Computer Workshop</h2>
+            <div class="supervisor">Supervisor: Dr. Marzieh MalekiMajd</div>
+          </div>
+          <div class="term-badge">Fall 2023 · Fall 2024 · Fall 2025</div>
+        </div>
+        <ul class="duties-list">
+          <li>Directed and modernized the curriculum for 3 consecutive academic years; designed and delivered lecture modules on GNU/Linux system fundamentals, Bash scripting, Git version control, and C development tooling for incoming freshmen each semester.</li>
+          <li>Managed and coordinated teams of 10+ teaching assistants, organizing weekly recitations, practical lab assignments, and project grading rubrics.</li>
+        </ul>
+      </section>
+
+      <!-- 2. Software Engineering -->
+      <section class="appointment-card framed">
+        <div class="card-header">
+          <div>
+            <h2>Head Teaching Assistant — Software Engineering</h2>
+            <div class="supervisor">Supervisor: Dr. Mehrdad Ashtiani</div>
+          </div>
+          <div class="term-badge">Spring 2026 · Fall 2026</div>
+        </div>
+        <ul class="duties-list">
+          <li>Supervised the practical lab curriculum for 80+ undergraduate engineering students across 2 semesters, managing student Product Owners (POs) and Scrum Masters (SMs) through Agile (Scrum) software development sprints and rigorous code reviews.</li>
+        </ul>
+      </section>
+
+      <!-- 3. Programming Fundamentals -->
+      <section class="appointment-card framed">
+        <div class="card-header">
+          <div>
+            <h2>Head Teaching Assistant — Programming Fundamentals</h2>
+            <div class="supervisor">Instructors: Dr. Marzieh MalekiMajd & Dr. Mehrdad Ashtiani</div>
+          </div>
+          <div class="term-badge">Fall 2024 · Spring 2025</div>
+        </div>
+        <ul class="duties-list">
+          <li>Coordinated an instructional staff of 38 TAs to support 100+ students across lecture and lab sessions.</li>
+          <li>Authored comprehensive problem sets, laboratory exercises, and designed an interactive Terminal User Interface (TUI) final course project in C/C++.</li>
+        </ul>
+      </section>
+
+      <!-- 4. Operating Systems -->
+      <section class="appointment-card framed">
+        <div class="card-header">
+          <div>
+            <h2>Teaching Assistant — Operating Systems</h2>
+            <div class="supervisor">Instructors: Dr. Reza Entezari-Maleki & Dr. Seyed Vahid Azhari</div>
+          </div>
+          <div class="term-badge">Fall 2025 · Fall 2026</div>
+        </div>
+        <ul class="duties-list">
+          <li>Designed a major practical course project focused on extending the xv6 kernel's CPU scheduling and virtual memory swapping subsystems.</li>
+          <li>Authored practical problem sets and hands-on assignments solidifying students' grasp of virtual memory paging, translation, and kernel concurrency.</li>
+        </ul>
+      </section>
+
+      <!-- 5. Advanced Programming (C#) -->
+      <section class="appointment-card framed">
+        <div class="card-header">
+          <div>
+            <h2>Teaching Assistant — Advanced Programming (C#)</h2>
+            <div class="supervisor">Supervisor: Dr. Marzieh MalekiMajd</div>
+          </div>
+          <div class="term-badge">Spring 2024 · Spring 2025 · Spring 2026</div>
+        </div>
+        <ul class="duties-list">
+          <li>Appointed for 3 semesters for the core Object-Oriented Programming (OOP) course in C#; managed a sub-team of TAs to design and deliver practical programming assignments.</li>
+          <li>Designed and authored the comprehensive final project assignment in Spring 2026, held preparation workshops, and supervised evaluation and grading.</li>
+        </ul>
+      </section>
+
+      <!-- 6. Theory of Languages & Automata -->
+      <section class="appointment-card framed">
+        <div class="card-header">
+          <div>
+            <h2>Teaching Assistant — Theory of Languages & Automata</h2>
+            <div class="supervisor">Supervisor: Dr. Reza Entezari-Maleki</div>
+          </div>
+          <div class="term-badge">Spring 2025 · Spring 2026</div>
+        </div>
+        <ul class="duties-list">
+          <li>Designed weekly problem sets and quizzes covering regular expressions, context-free grammars, Pushdown Automata, and Turing machines across two academic semesters.</li>
+          <li>Designed, authored, and graded the final project assignment, evaluating student automata implementations and proofs.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .terminal-banner {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--foreground) 75%, transparent);
+    margin-bottom: 15px;
+  }
+
+  .prompt-user {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .prompt-path {
+    color: var(--foreground);
+  }
+
+  .prompt-symbol {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  .prompt-cmd {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .notice-bar {
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 30px;
+    padding: 6px 12px;
+    border-left: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+  }
+
+  .appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .appointment-card {
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--accent) 25%, transparent);
+    padding-bottom: 10px;
+  }
+
+  .card-header h2 {
+    margin: 0 0 5px 0;
+    color: var(--accent);
+    font-size: 1.18rem;
+  }
+
+  .supervisor {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  .term-badge {
+    font-size: 0.82rem;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    padding: 3px 8px;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    white-space: nowrap;
+  }
+
+  .duties-list {
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+
+  .duties-list li {
+    margin-bottom: 8px;
+    line-height: 1.55;
+    font-size: 0.93rem;
+  }
+
+  .duties-list li:last-child {
+    margin-bottom: 0;
+  }
+</style>

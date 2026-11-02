@@ -1,21 +1,23 @@
 {
-  "name": "astro-theme-terminal",
+  "name": "milad-zarei-maleki-portfolio",
   "type": "module",
   "version": "1.0.0",
-  "description": "A terminal-inspired theme for Astro, ported from Hugo Terminal Theme by panr",
+  "description": "Personal portfolio & systems research showcase for Milad Zarei-Maleki",
   "license": "MIT",
-  "author": "Dennis Klappe",
+  "author": "Milad Zarei-Maleki",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dennisklappe/astro-theme-terminal"
+    "url": "https://github.com/MiliAxe/milad.zareimaleki.ir"
   },
   "keywords": [
+    "systems-software",
+    "kernel-observability",
+    "dynamic-tracing",
+    "uftrace",
+    "ebpf",
+    "dpdk",
     "astro",
-    "theme",
-    "terminal",
-    "blog",
-    "monospace",
-    "retro"
+    "terminal"
   ],
   "scripts": {
     "dev": "astro dev",

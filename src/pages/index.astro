@@ -3,27 +3,379 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+
 const posts = (await getCollection('posts'))
   .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const researchInterests = [
+  'Systems Software & Operating Systems',
+  'Low-Overhead Dynamic Runtime Tracing & Kernel Observability',
+  'High-Performance Packet Processing (DPDK & userspace eBPF)',
+  'Distributed Systems & Edge Computing Optimization',
+  'Dynamic Program Analysis & Compiler Tooling',
+  'Microarchitectural Profiling & Performance Diagnostics',
+];
+
+const skills = [
+  {
+    category: 'Systems & Linux',
+    items: ['Linux Systems Programming', 'Dynamic Kernel Tracing (uftrace, perf, strace)', 'Userspace eBPF (bpftime, libbpf)', 'QEMU', 'Memory Management (Paging/Swapping)', 'x86 Assembly', 'GDB'],
+  },
+  {
+    category: 'Languages',
+    items: ['C', 'C++', 'Rust', 'Python', 'Go', 'C#', 'Bash/Shell', 'SQL', 'VHDL'],
+  },
+  {
+    category: 'Networking & Distributed',
+    items: ['TCP/IP Protocols', 'DPDK', 'TUN/TAP Interfaces', 'Isolated Network Namespaces', 'Sockets', 'REST APIs', 'WireGuard / Sing-box'],
+  },
+  {
+    category: 'Tools & Environments',
+    items: ['Git / GitHub', 'Docker', 'Linux System Administration', 'CMake', 'Raylib', 'Dear ImGui', 'NumPy', 'SciPy', 'Matplotlib'],
+  },
+  {
+    category: 'Embedded & Hardware',
+    items: ['ESP8266', 'ESP32', 'ESP-NOW Protocol', 'Arduino', 'AVR / ATmega32 Interfacing'],
+  },
+];
 ---
 
-<BaseLayout title="Terminal">
+<BaseLayout title="Home" description="Personal portfolio & systems research showcase for Milad Zarei-Maleki">
+  <!-- Terminal Prompt Hero -->
   <div class="index-content framed">
-    <h1 id="hello-there">Hello there!</h1>
-    <p>Welcome to the Astro Terminal theme! This is a port of the popular Hugo Terminal theme by panr, bringing the same retro terminal aesthetic to Astro.</p>
-    <p>
-      You can customise the colour scheme using panr's <a href="https://panr.github.io/terminal-css/"><strong>Terminal.css</strong></a> 
-      generator - all generated schemes are fully compatible with this theme.
+    <div class="terminal-prompt">
+      <span class="prompt-user">milad@sys</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span> <span class="prompt-cmd">whoami</span>
+    </div>
+    <h1 class="hero-name">Milad Zarei-Maleki</h1>
+    <p class="hero-tagline">
+      <strong>Systems Software & Kernel Observability Researcher</strong><br />
+      B.Sc. in Computer Engineering @ <a href="http://www.iust.ac.ir/" target="_blank" rel="noopener">Iran University of Science and Technology (IUST)</a><br />
+      Research Assistant @ <a href={`${base}research/`}>Deep Observability Lab</a> (Supervisor: Dr. Seyed Vahid Azhari)
     </p>
-    <p>
-      <a href="https://panr.github.io/terminal-css/">
-        <img src="https://panr.github.io/hugo-theme-terminal-demo/img/terminal-css.png" alt="Terminal.css Preview" />
-      </a>
-    </p>
+
+    <div class="terminal-prompt">
+      <span class="prompt-user">milad@sys</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span> <span class="prompt-cmd">status --brief</span>
+    </div>
+    <ul class="status-list">
+      <li><strong>Academic Standing:</strong> First-Class Honors (Ranked top echelon across 141 graded credits; GPA: 18.69 / 20.00 — US: 3.96+ / 4.0)</li>
+      <li><strong>Open Source Impact:</strong> 3 upstream pull requests merged into official <a href="https://github.com/namhyung/uftrace" target="_blank" rel="noopener">uftrace</a></li>
+      <li><strong>Konkour Standing:</strong> Ranked 1st in high school, ~500th nationwide among 145,000+ examinees (Top 0.35%)</li>
+      <li><strong>Teaching Leadership:</strong> Head TA for Computer Workshop (3 yrs), Software Engineering, and Programming Fundamentals</li>
+    </ul>
+
+    <div class="hero-actions">
+      <a href={`${base}projects/`} class="button">Projects</a>
+      <a href={`${base}research/`} class="button">Research</a>
+      <a href={`${base}teaching/`} class="button">Teaching</a>
+      <a href={`${base}CV_Milad_Zarei_Maleki.pdf`} target="_blank" rel="noopener" class="button">CV (PDF) ↗</a>
+      <a href={`${base}about/`} class="button outline">About Me</a>
+    </div>
   </div>
-  
-  <div class="posts">
-    {posts.map((post) => <PostCard post={post} />)}
-  </div>
+
+  <!-- Research Interests -->
+  <section class="portfolio-section">
+    <h2><span class="section-prefix">#</span> Research Interests</h2>
+    <div class="interests-grid">
+      {researchInterests.map((interest) => (
+        <div class="interest-item">
+          <span class="interest-arrow">›</span> {interest}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Systems Projects -->
+  <section class="portfolio-section">
+    <div class="section-header">
+      <h2><span class="section-prefix">#</span> Featured Systems Projects</h2>
+      <a href={`${base}projects/`} class="view-all-link">[view all projects ↗]</a>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <h3>xv6: In-Kernel Deadlock Detection Engine</h3>
+          <span class="tech-tag">C / x86 Assembly / QEMU</span>
+        </div>
+        <p>
+          Engineered an in-kernel dynamic deadlock detection subsystem for multi-threaded processes in xv6 using an active Resource Allocation Graph (RAG) mapped within dedicated kernel memory pages, custom syscalls, and DFS cycle detection with spinlock synchronization.
+        </p>
+        <div class="card-links">
+          <a href={`${base}projects/`} class="button inline">[Read Architecture]</a>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button inline">[GitHub ↗]</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Microarchitectural Profiling: KVM vs. QEMU TCG</h3>
+          <span class="tech-tag">C / Linux perf / QEMU / KVM</span>
+        </div>
+        <p>
+          Evaluated memory and cache behaviors comparing hardware virtualization (KVM on Intel VT-x) against dynamic binary translation (QEMU TCG cross-architecture: x86_64 to aarch64). Pinned isolated vCPUs, evaluated cache hierarchies under memory-bound workloads, and isolated SoftMMU hotspots with FlameGraphs.
+        </p>
+        <div class="card-links">
+          <a href={`${base}projects/`} class="button inline">[Read Architecture]</a>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button inline">[GitHub ↗]</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>fluidrs: Real-Time Eulerian Fluid Dynamics Engine</h3>
+          <span class="tech-tag">Rust / Raylib / Dear ImGui</span>
+        </div>
+        <p>
+          Designed a real-time 2D Eulerian fluid simulation engine from scratch in Rust, solving incompressible Navier-Stokes equations with vectorized Jacobi relaxation algorithms for numerical pressure Poisson projection at sustained 60+ FPS.
+        </p>
+        <div class="card-links">
+          <a href={`${base}projects/`} class="button inline">[Read Architecture]</a>
+          <a href="https://github.com/MiliAxe" target="_blank" rel="noopener" class="button inline">[GitHub ↗]</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Matrix -->
+  <section class="portfolio-section">
+    <h2><span class="section-prefix">#</span> Kernel & Systems Toolkit</h2>
+    <div class="skills-table">
+      {skills.map((skillGroup) => (
+        <div class="skill-row">
+          <div class="skill-category">[{skillGroup.category}]</div>
+          <div class="skill-items">
+            {skillGroup.items.map((item, idx) => (
+              <span class="skill-badge">{item}{idx < skillGroup.items.length - 1 ? ' · ' : ''}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Recent Technical Notes / Posts -->
+  <section class="portfolio-section">
+    <div class="section-header">
+      <h2><span class="section-prefix">#</span> Technical Writeups & Lab Notes</h2>
+      <a href={`${base}posts/`} class="view-all-link">[all posts ↗]</a>
+    </div>
+
+    <div class="posts">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .terminal-prompt {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--foreground) 75%, transparent);
+    margin-top: 15px;
+    margin-bottom: 8px;
+    user-select: none;
+  }
+
+  .terminal-prompt:first-of-type {
+    margin-top: 0;
+  }
+
+  .prompt-user {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .prompt-path {
+    color: var(--foreground);
+  }
+
+  .prompt-symbol {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  .prompt-cmd {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .hero-name {
+    margin: 5px 0 10px 0;
+    color: var(--accent);
+  }
+
+  .hero-tagline {
+    margin: 10px 0 20px 0;
+    line-height: 1.6;
+  }
+
+  .status-list {
+    list-style: none;
+    margin: 10px 0 25px 0;
+    padding-left: 0;
+  }
+
+  .status-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .status-list li::before {
+    content: "::";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .portfolio-section {
+    margin: 50px 0;
+  }
+
+  .section-prefix {
+    color: var(--accent);
+    margin-right: 5px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .section-header h2 {
+    margin: 0;
+  }
+
+  .view-all-link {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .view-all-link:hover {
+    text-decoration: underline;
+  }
+
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .interest-item {
+    border-left: 2px solid var(--accent);
+    padding: 8px 12px;
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+    font-size: 0.95rem;
+  }
+
+  .interest-arrow {
+    color: var(--accent);
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 15px;
+  }
+
+  .project-card {
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    padding: 20px;
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+    transition: border-color 0.15s ease;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .project-header h3 {
+    margin: 0;
+    color: var(--accent);
+  }
+
+  .tech-tag {
+    font-size: 0.8rem;
+    color: var(--accent);
+    opacity: 0.85;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    padding: 2px 8px;
+  }
+
+  .project-card p {
+    margin: 10px 0 15px 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .card-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .skills-table {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 15px;
+  }
+
+  .skill-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  .skill-category {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .skill-items {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--foreground);
+  }
+
+  @media (min-width: 640px) {
+    .skill-row {
+      flex-direction: row;
+      align-items: baseline;
+    }
+
+    .skill-category {
+      width: 220px;
+      flex-shrink: 0;
+    }
+  }
+</style>

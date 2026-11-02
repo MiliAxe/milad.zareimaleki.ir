@@ -1,36 +1,377 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 
-<BaseLayout title="About">
+<BaseLayout title="About" description="Biography, Education, Leadership, and Academic Profile of Milad Zarei-Maleki">
   <div class="page">
-    <h1>About</h1>
-    <p>
-      This is the Astro Terminal theme, a port of the fantastic
-      <a href="https://github.com/panr/hugo-theme-terminal" target="_blank" rel="noopener">Hugo Terminal theme</a>
-      created by <a href="https://github.com/panr" target="_blank" rel="noopener">panr</a>.
+    <div class="terminal-banner">
+      <span class="prompt-user">milad@sys</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span> <span class="prompt-cmd">cat /etc/profile.d/milad.sh</span>
+    </div>
+
+    <h1>Milad Zarei-Maleki</h1>
+    <p class="subtitle">
+      Systems Software & Operating Systems Researcher · Kernel Observability & Dynamic Tracing
     </p>
-    
-    <p>
-      The Astro version maintains all the great features of the original theme whilst using Astro's modern 
-      static site generation capabilities.
-    </p>
-    
-    <p>
-      The theme features syntax highlighting with Shiki, customisable colour schemes via
-      <a href="https://panr.github.io/terminal-css/" target="_blank" rel="noopener">Terminal.css</a>,
-      Fira Code monospace font, and a beautiful retro terminal aesthetic.
-    </p>
-    
-    <p>
-      Ported to Astro by <a href="https://github.com/dennisklappe" target="_blank" rel="noopener">Dennis Klappe</a>.
-    </p>
+
+    <!-- Bio & Summary -->
+    <section class="about-section">
+      <p>
+        I am a senior undergraduate computer engineering student at the <strong>School of Computer Engineering, Iran University of Science and Technology (IUST)</strong>. My passion lies in understanding and optimizing the lowest levels of computing stacks: from kernel internals, memory management, and compiler instrumentation hooks to high-throughput network datapaths (DPDK / eBPF) and hardware performance counter diagnostics.
+      </p>
+      <p>
+        Currently, I conduct research at the <strong>Deep Observability Lab</strong> under the supervision of Dr. Seyed Vahid Azhari, where I build conditional dynamic runtime tracing extensions for <a href="https://github.com/namhyung/uftrace" target="_blank" rel="noopener">uftrace</a> and instrument line-rate packet processing pipelines.
+      </p>
+      <div class="action-buttons">
+        <a href={`${base}CV_Milad_Zarei_Maleki.pdf`} target="_blank" rel="noopener" class="button">Download Full CV (PDF) ↗</a>
+        <a href="mailto:milad_zarei@comp.iust.ac.ir" class="button outline">Get in Touch</a>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="about-section">
+      <h2><span class="section-prefix">#</span> Education</h2>
+
+      <div class="edu-card framed">
+        <div class="edu-header">
+          <div>
+            <h3>Iran University of Science and Technology (IUST)</h3>
+            <div class="degree">Bachelor of Science in Computer Engineering</div>
+          </div>
+          <div class="meta-right">
+            <span class="date">Sep 2022 – Present</span>
+            <span class="location">Tehran, Iran</span>
+          </div>
+        </div>
+        <ul class="edu-details">
+          <li><strong>Cumulative GPA:</strong> 18.69 / 20.00 (US Equivalent: <strong>3.96+ / 4.0</strong>)</li>
+          <li><strong>Academic Standing:</strong> First-Class Honors (Ranked in top echelon across 141 graded credits in School of Computer Engineering)</li>
+          <li><strong>Final Project Topic:</strong> <em>Design and Evaluation of Low-Overhead Dynamic Runtime Tracing and Function Interception in High-Performance Packet Processing Systems</em></li>
+          <li><strong>Thesis Supervisor:</strong> Dr. Seyed Vahid Azhari</li>
+        </ul>
+      </div>
+
+      <div class="edu-card framed">
+        <div class="edu-header">
+          <div>
+            <h3>Allameh Tabatabaei High School</h3>
+            <div class="degree">Diploma in Mathematics and Physics Discipline</div>
+          </div>
+          <div class="meta-right">
+            <span class="date">Sep 2018 – Jun 2022</span>
+            <span class="location">Tehran, Iran</span>
+          </div>
+        </div>
+        <ul class="edu-details">
+          <li><strong>Konkour Standing:</strong> Ranked <strong>1st</strong> among all graduating students across the high school in the Iranian National University Entrance Examination.</li>
+          <li><strong>Nationwide Rank:</strong> Ranked <strong>~500th nationwide</strong> among 145,000+ examinees (<strong>Top 0.35%</strong>) in the 2022 National University Entrance Exam.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Leadership & Extracurricular Activities -->
+    <section class="about-section">
+      <h2><span class="section-prefix">#</span> Leadership & Extracurricular Activities</h2>
+      <div class="framed activity-box">
+        <h3>Computer Engineering Student Association (CESA), IUST</h3>
+        <div class="role-title">Core Member, Publication Manager of Turing Magazine & Initiative Lead</div>
+
+        <div class="sub-activity">
+          <h4>Turing Magazine</h4>
+          <p>
+            Managed editorial and technical publishing operations for the department's scientific student journal. Directed an 8-member committee of student authors and peer reviewers to publish 2 comprehensive magazine issues on modern computing breakthroughs.
+          </p>
+        </div>
+
+        <div class="sub-activity">
+          <h4>CESA Libre Initiative</h4>
+          <p>
+            Founded and spearheaded the <strong>CESA Libre</strong> open-source initiative. Organized and led hands-on technical workshops covering GNU/Linux environments, command-line productivity, and modal editing (Vim/Neovim) for 60+ undergraduate attendees.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standardized Tests & Languages -->
+    <section class="about-section">
+      <h2><span class="section-prefix">#</span> Standardized Tests & Languages</h2>
+      <div class="tests-grid">
+        <div class="test-item framed">
+          <h3>English Proficiency (TOEFL iBT)</h3>
+          <div class="score"><strong>Score:</strong> 5.5 / 6.0 (Score Equivalent: <strong>110 / 120</strong>)</div>
+        </div>
+        <div class="test-item framed">
+          <h3>Languages</h3>
+          <ul class="lang-list">
+            <li><strong>Persian:</strong> Native</li>
+            <li><strong>English:</strong> Fluent / Full Professional Proficiency</li>
+            <li><strong>Azeri:</strong> Conversational</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academic References -->
+    <section class="about-section">
+      <h2><span class="section-prefix">#</span> Academic References</h2>
+      <div class="references-grid">
+        <div class="ref-card framed">
+          <h3>Dr. Seyed Vahid Azhari</h3>
+          <div class="ref-title">Assistant Professor, School of Computer Engineering, IUST</div>
+          <div class="ref-role">B.Sc. Thesis Advisor & Director of Deep Observability Lab</div>
+          <div class="ref-contact"><a href="mailto:azharivs@iust.ac.ir">azharivs@iust.ac.ir</a></div>
+        </div>
+
+        <div class="ref-card framed">
+          <h3>Dr. Reza Entezari-Maleki</h3>
+          <div class="ref-title">Assistant Professor, School of Computer Engineering, IUST</div>
+          <div class="ref-role">Director of Distributed and Scalable Computation Systems Lab; Operating Systems Instructor</div>
+          <div class="ref-contact"><a href="mailto:entezari@iust.ac.ir">entezari@iust.ac.ir</a></div>
+        </div>
+
+        <div class="ref-card framed">
+          <h3>Dr. Mehrdad Ashtiani</h3>
+          <div class="ref-title">Assistant Professor, School of Computer Engineering, IUST</div>
+          <div class="ref-role">Faculty Supervisor for Software Engineering & Advanced Software Design</div>
+          <div class="ref-contact"><a href="mailto:m_ashtiani@iust.ac.ir">m_ashtiani@iust.ac.ir</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Channels -->
+    <section class="about-section">
+      <h2><span class="section-prefix">#</span> Contact & Channels</h2>
+      <ul class="contact-list">
+        <li><strong>Email (Academic):</strong> <a href="mailto:milad_zarei@comp.iust.ac.ir">milad_zarei@comp.iust.ac.ir</a></li>
+        <li><strong>Email (Personal):</strong> <a href="mailto:miliaxe0@gmail.com">miliaxe0@gmail.com</a></li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/MiliAxe" target="_blank" rel="noopener">github.com/MiliAxe</a></li>
+        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/milad-zarei-maleki" target="_blank" rel="noopener">linkedin.com/in/milad-zarei-maleki</a></li>
+        <li><strong>Personal Domain:</strong> <a href="https://milad.zareimaleki.ir">milad.zareimaleki.ir</a> / <a href="https://miladzm.ir">miladzm.ir</a></li>
+        <li><strong>Location:</strong> Tehran, Iran</li>
+      </ul>
+    </section>
   </div>
 </BaseLayout>
 
 <style>
-  .page {
-    max-width: 760px;
-    margin: 0 auto;
+  .subtitle {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 25px;
+  }
+
+  .terminal-banner {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--foreground) 75%, transparent);
+    margin-bottom: 15px;
+  }
+
+  .prompt-user {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .prompt-path {
+    color: var(--foreground);
+  }
+
+  .prompt-symbol {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  .prompt-cmd {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .about-section {
+    margin: 40px 0;
+  }
+
+  .about-section p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .section-prefix {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .edu-card {
+    margin-bottom: 25px;
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+  }
+
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--accent) 25%, transparent);
+    padding-bottom: 10px;
+  }
+
+  .edu-header h3 {
+    margin: 0 0 4px 0;
+    color: var(--accent);
+    font-size: 1.15rem;
+  }
+
+  .degree {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .meta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+
+  .edu-details {
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+
+  .edu-details li {
+    margin-bottom: 6px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .activity-box {
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+  }
+
+  .activity-box h3 {
+    margin: 0 0 5px 0;
+    color: var(--accent);
+  }
+
+  .role-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--accent) 25%, transparent);
+    padding-bottom: 8px;
+  }
+
+  .sub-activity {
+    margin-top: 15px;
+  }
+
+  .sub-activity h4 {
+    margin: 0 0 6px 0;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  .sub-activity p {
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .tests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .test-item {
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+  }
+
+  .test-item h3 {
+    margin: 0 0 10px 0;
+    color: var(--accent);
+    font-size: 1.05rem;
+  }
+
+  .score {
+    font-size: 0.95rem;
+  }
+
+  .lang-list {
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+
+  .lang-list li {
+    margin-bottom: 4px;
+    font-size: 0.92rem;
+  }
+
+  .references-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ref-card {
+    background: color-mix(in srgb, var(--background) 95%, white 5%);
+  }
+
+  .ref-card h3 {
+    margin: 0 0 5px 0;
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+
+  .ref-title {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+  }
+
+  .ref-role {
+    font-size: 0.88rem;
+    opacity: 0.85;
+    margin-bottom: 8px;
+  }
+
+  .ref-contact a {
+    font-size: 0.9rem;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .contact-list li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .contact-list li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  @media (max-width: 640px) {
+    .meta-right {
+      align-items: flex-start;
+    }
   }
 </style>
