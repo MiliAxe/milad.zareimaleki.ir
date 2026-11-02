@@ -1,0 +1,18 @@
+---
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${base}CV_Milad_Zarei_Maleki.pdf`} />
+    <link rel="canonical" href="https://milad.zareimaleki.ir/CV_Milad_Zarei_Maleki.pdf" />
+    <title>Redirecting to CV :: Milad Zarei-Maleki</title>
+    <script is:inline define:vars={{ base }}>
+      window.location.replace(`${base}CV_Milad_Zarei_Maleki.pdf`);
+    </script>
+  </head>
+  <body style="background: #1a170f; color: #eec35e; font-family: monospace; padding: 40px; text-align: center;">
+    <p>Redirecting to <a href={`${base}CV_Milad_Zarei_Maleki.pdf`} style="color: #eec35e;">CV_Milad_Zarei_Maleki.pdf</a>...</p>
+  </body>
+</html>
