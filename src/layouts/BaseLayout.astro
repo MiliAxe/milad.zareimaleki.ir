@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 const siteURL = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://milad.zareimaleki.ir';
 const metaImage = image ? new URL(image, Astro.url).toString() : `${siteURL}/avatar.jpg`;
 
-const pageTitle = title ? `${title} :: Milad Zarei-Maleki` : 'Milad Zarei-Maleki | Systems Software Researcher';
+const pageTitle = title ? `${title} :: Milad Zarei-Maleki` : 'Milad Zarei-Maleki';
 
 const websiteSchema = {
   '@context': 'https://schema.org',
