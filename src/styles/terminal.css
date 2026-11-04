@@ -10,6 +10,20 @@
   --line-height: 1.54em;
 }
 
+:root[data-theme="light"] {
+  --background: #fbf7ee;
+  --foreground: #25221b;
+  --accent: #9a6500;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --background: #fbf7ee;
+    --foreground: #25221b;
+    --accent: #9a6500;
+  }
+}
+
 html {
   box-sizing: border-box;
 }
@@ -35,6 +49,7 @@ body {
   line-height: var(--line-height);
   background-color: var(--background);
   color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
   text-rendering: optimizeLegibility;
   font-variant-ligatures: contextual;
   -webkit-overflow-scrolling: touch;
